@@ -40,3 +40,5 @@ alias gds="git diff --staged"
 
 ########## Yarn ##########
 alias dev="yarn dev"
+alias lint="yarn lint"
+alias gena="yarn generate:api"
