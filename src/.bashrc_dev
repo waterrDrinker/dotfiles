@@ -21,6 +21,7 @@ alias gcod="git checkout dev"
 
 ########## Git Push ##########
 alias gp="git push"
+alias gpu="git push -u origin"
 alias gpf="git push --force"
 alias gpfl="git push --force-with-lease"
 
