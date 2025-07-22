@@ -3,6 +3,7 @@
 ########## Git Commit ##########
 alias gc="git commit"
 alias gcmsg="git commit -m"  # usage: gcmsg 'your message'
+alias gca="git commit --amend"
 alias gcskip="SKIP_API_GENERATION=true git commit"
 
 ########## Git Add ##########
