@@ -11,6 +11,7 @@ alias ga="git add ."
 
 ########## Git Rebase ##########
 alias grod="git rebase origin/dev"
+alias grodi="git rebase origin/dev -i"
 alias gra="git rebase --abort"
 alias grc="git rebase --continue"
 alias gri="git rebase -i"
@@ -25,6 +26,9 @@ alias gp="git push"
 alias gpu="git push -u origin"
 alias gpf="git push --force"
 alias gpfl="git push --force-with-lease"
+
+########## Git Pull ##########
+alias gpl="git pull"
 
 ########## Git Fetch ##########
 alias gf="git fetch origin"
