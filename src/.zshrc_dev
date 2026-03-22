@@ -1,5 +1,3 @@
-# ~/.bash_git_aliases
-
 ########## Git Commit ##########
 alias gc="git commit"
 alias gcmsg="git commit -m"  # usage: gcmsg 'your message'
