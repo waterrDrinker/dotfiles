@@ -1,6 +1,14 @@
 #!/bin/bash
 set -e
 
+# Keep sudo alive for entire script
+sudo -v
+while true; do
+  sudo -n true
+  sleep 60
+  kill -0 "$$" || exit
+done 2>/dev/null &
+
 # ── Update system ──────────────────────────────────────────
 echo "Updating system..."
 sudo pacman -Syu --noconfirm
@@ -44,6 +52,9 @@ packages=(
   slurp
   xdg-user-dirs
 )
+
+echo "Installing packages..."
+sudo pacman -S --needed --noconfirm "${packages[@]}"
 
 # ── Install AUR helper ─────────────────────────────────────
 sudo pacman -S --needed --noconfirm git base-devel
