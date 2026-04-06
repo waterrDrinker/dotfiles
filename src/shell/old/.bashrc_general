@@ -1,0 +1,43 @@
+export EDITOR=nvim
+alias se='sudoedit'
+
+alias shu='read -p "Are you sure you want to shutdown? (y/N) " ans && [[ $ans == [Yy] ]] && shutdown now'
+alias reb='read -p "Are you sure you want to reboot? (y/N) " ans && [[ $ans == [Yy] ]] && reboot'
+alias cl='clear'
+alias wl='wl-copy'
+
+alias ten="trans :ru"
+alias тру="trans ru:en"
+
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    source /usr/share/bash-completion/bash_completion
+fi
+
+t() {
+    dict "$@" | less -N -S
+}
+if declare -F _comp_cmd_dict >/dev/null 2>&1; then
+    complete -F _comp_cmd_dict t
+fi
+
+alias stvpn="sudo systemctl start sing-box"
+alias rvpn="sudo systemctl restart sing-box"
+
+alias brin='nohup brave-browser --incognito >/dev/null 2>&1 &'
+alias frin='nohup firefox --private-window >/dev/null 2>&1 &'
+alias lv='NVIM_APPNAME=nvim-lazy nvim'
+alias kv='NVIM_APPNAME=nvim-kickstarter nvim'
+alias vi='nvim'
+
+alias gcl="wl-copy < /mnt/linuxdisk/my-stuff/programming/jobs/cover-letter.txt"
+alias gclen="wl-copy < /mnt/linuxdisk/my-stuff/programming/jobs/cover-letter-en.txt"
+
+alias pwdc="pwd | wl-copy"
+alias mv='mv -i'
+alias ut7='sudo umount /dev/disk/by-id/usb-Samsung_PSSD_T7_Touch_S5KENJ0TB00202E-0:0-part1 && echo "T7 Touch safely unmounted."'
+lst() {
+    local dir="${1:-.}"   # default to current directory
+    local lines="${2:-10}"  # default to 10 lines
+    ls -lhtA "$dir" | head -n "$lines"
+}
+

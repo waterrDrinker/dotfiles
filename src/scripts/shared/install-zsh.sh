@@ -8,17 +8,24 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/p
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # Install Starship
-if [ "$(uname)" = "Darwin" ]; then
-    brew install starship
-elif [ -f /etc/os-release ]; then
-    . /etc/os-release
-    case "$ID" in
-        fedora)
-            dnf copr enable atim/starship
-            dnf install -y starship
-            ;;
-    esac
+if [ -f /etc/os-release ]; then
+  . /etc/os-release
+  case "$ID" in
+  arch)
+    sudo pacman -S --noconfirm starship
+    ;;
+  debian | ubuntu)
+    sudo apt install -y starship
+    ;;
+  *)
+    echo "Unsupported distro: $ID"
+    exit 1
+    ;;
+  esac
 fi
 
-# Add Starship to .zshrc if not already there
-grep -q "starship init zsh" ~/.zshrc || echo 'eval "$(starship init zsh)"' >> ~/.zshrc
+# Set Zsh as default shell
+chsh -s "$(which zsh)"
+
+rm -f ~/.zshrc
+ln -sf "$HOME/dotfiles/src/shell/.zshrc" ~/.zshrc

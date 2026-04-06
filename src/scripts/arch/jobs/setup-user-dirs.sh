@@ -1,0 +1,16 @@
+job_setup_user_dirs() {
+  mkdir -p ~/downloads ~/documents ~/pictures ~/music ~/videos
+
+  cat >~/.config/user-dirs.dirs <<'EOF'
+XDG_DESKTOP_DIR="$HOME"
+XDG_TEMPLATES_DIR="$HOME"
+XDG_PUBLICSHARE_DIR="$HOME"
+XDG_DOWNLOAD_DIR="$HOME/downloads"
+XDG_DOCUMENTS_DIR="$HOME/documents"
+XDG_PICTURES_DIR="$HOME/pictures"
+XDG_MUSIC_DIR="$HOME/music"
+XDG_VIDEOS_DIR="$HOME/videos"
+EOF
+
+  xdg-user-dirs-update
+}
