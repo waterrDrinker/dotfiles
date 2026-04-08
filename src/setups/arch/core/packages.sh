@@ -9,6 +9,7 @@ system=(
   man-pages
   xdg-utils
   gvfs
+  darkman
 )
 
 # ── shell / cli ────────────────────────
@@ -81,6 +82,8 @@ dev=(
 # ── misc ───────────────────────────────
 misc=(
   xdg-user-dirs
+  xdg-desktop-portal
+  xdg-desktop-portal-hyprland
 )
 
 # ── merge all arrays ───────────────────

@@ -12,9 +12,10 @@ Things to install manually after running setup.sh:
 ## Set Darkman config
 Create `~/.config/darkman/config.yaml`:
 ```yaml
-lat: 50.11
-lng: 8.68
+lat: val
+lng: val
 ```
+portal: true
 
 ```bash
 systemctl --user restart darkman

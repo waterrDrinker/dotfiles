@@ -6,6 +6,7 @@ user_services=(
   pipewire-pulse
   wireplumber
   darkman
+  xdg-desktop-portal
 )
 
 echo "Enabling user services..."
