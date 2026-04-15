@@ -1,7 +1,9 @@
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm use default >/dev/null
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 export ZSH="$HOME/.oh-my-zsh"
@@ -19,11 +21,18 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # ─── Dotfiles ────────────────────────────────────────────────────────────────
-for f in "$HOME/dotfiles/src/shell"/.zshrc_*; do
-  [ -f "$f" ] && source "$f"
+# Load generic modules
+for f in "$HOME/dotfiles/src/shell/modules"/.zsh_*(.N); do
+  source "$f"
 done
 
-# ─── Aliases ─────────────────────────────────────────────────────────────────
-alias opfls='~/.locale/bin/open_folders.sh'
+# Load distro-specific config
+if [[ -f /etc/os-release ]]; then
+  . /etc/os-release
+
+  distro_file="$HOME/dotfiles/src/shell/modules/distro/.zsh_${ID}"
+
+  [[ -f "$distro_file" ]] && source "$distro_file"
+fi
 
 eval "$(starship init zsh)"

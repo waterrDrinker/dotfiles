@@ -4,12 +4,13 @@ set -e
 # ── system ─────────────────────────────
 system=(
   git
-  base-devel
+  polkit
+  polkit-gnome
   man-db
   man-pages
   xdg-utils
   gvfs
-  darkman
+  darkman # ⚠️ NOT in official Fedora repos (likely COPR/AUR equivalent)
 )
 
 # ── shell / cli ────────────────────────
@@ -23,33 +24,16 @@ cli=(
   openbsd-netcat
 )
 
-# ── wm / ui ────────────────────────────
-ui=(
-  waybar
-  rofi
-)
-
-# ── terminal ───────────────────────────
-terminal=(
-  wezterm
-)
-
 # ── audio ──────────────────────────────
 audio=(
   pipewire
   pipewire-alsa
-  pipewire-pulse
+  pipewire-pulseaudio # ⚠ Fedora uses pipewire-pulseaudio (NOT pipewire-pulse)
   wireplumber
-)
-
-# ── fonts ──────────────────────────────
-fonts=(
-  ttf-jetbrains-mono-nerd
 )
 
 # ── apps ───────────────────────────────
 apps=(
-  firefox
   qbittorrent
   libreoffice
   mpv
@@ -60,13 +44,7 @@ apps=(
 
 # ── file management ────────────────────
 files=(
-  thunar
-)
-
-# ── wayland utils ──────────────────────
-wayland=(
-  grim
-  slurp
+  nautilus
 )
 
 # ── dev ────────────────────────────────
@@ -75,7 +53,7 @@ dev=(
   postgresql
   ffmpeg
   iperf3
-  perl-image-exiftool
+  perl-Image-ExifTool # ⚠ Fedora package name differs
   rust
 )
 
@@ -83,23 +61,17 @@ dev=(
 misc=(
   xdg-user-dirs
   xdg-desktop-portal
-  xdg-desktop-portal-hyprland
 )
 
 # ── merge all arrays ───────────────────
-packages=(
+main_packages=(
   "${system[@]}"
   "${cli[@]}"
-  "${ui[@]}"
-  "${terminal[@]}"
   "${audio[@]}"
-  "${fonts[@]}"
   "${apps[@]}"
   "${files[@]}"
-  "${wayland[@]}"
   "${dev[@]}"
   "${misc[@]}"
 )
 
-echo "Installing packages..."
-sudo pacman -S --needed --noconfirm "${packages[@]}"
+sudo dnf install -y "${main_packages[@]}"

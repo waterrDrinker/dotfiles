@@ -3,11 +3,12 @@ set -e
 
 # Resolve directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+ROOT_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 
-# Keep sudo alive
 source "$ROOT_DIR/src/setups/shared/keep-sudo.sh"
-keep_sudo_alive
+source "$SCRIPT_DIR/bootstrap/mirrors.sh"
+keep_sudo
+bootstrap_mirrors
 
 echo "Updating system..."
 sudo pacman -Syu --noconfirm

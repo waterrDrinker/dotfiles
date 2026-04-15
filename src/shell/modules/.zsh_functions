@@ -1,0 +1,9 @@
+t() {
+    dict "$@" | less -N -S
+}
+
+lst() {
+    local dir="${1:-.}"
+    local lines="${2:-10}"
+    ls -lhtA "$dir" | head -n "$lines"
+}
