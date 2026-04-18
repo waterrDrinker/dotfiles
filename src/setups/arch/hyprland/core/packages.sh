@@ -15,8 +15,6 @@ hyprland_packages=(
   grim
   slurp
 
-  kitty
-
   dunst
 
   polkit-gnome

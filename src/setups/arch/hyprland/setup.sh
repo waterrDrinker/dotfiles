@@ -23,7 +23,7 @@ CORE_SCRIPTS=(
 
 for script in "${CORE_SCRIPTS[@]}"; do
   echo "→ Running $script"
-  source "$script"
+  bash "$script"
 done
 
 # --- Run jobs ---
@@ -31,7 +31,7 @@ JOBS_DIR="$SCRIPT_DIR/jobs"
 for job in "$JOBS_DIR"/*.sh; do
   [ -e "$job" ] || continue
   echo "→ Running job $job"
-  source "$job"
+  bash "$job"
 done
 
 # --- Install Zsh at the end ---

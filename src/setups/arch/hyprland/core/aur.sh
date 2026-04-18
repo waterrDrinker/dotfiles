@@ -16,7 +16,6 @@ fi
 aur_packages=(
   brave-bin
   sing-box
-  darkman
   informant
 )
 
