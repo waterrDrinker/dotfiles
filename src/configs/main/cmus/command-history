@@ -1,0 +1,56 @@
+add /mnt/linuxdisk/media/music/
+shell c
+shell 1
+sanji
+shell 
+cmus
+add /mnt/linuxdisk/media/music/ost/life-is-strange/life-is-strange.m3u
+pl-create lis
+pl-import 
+player-prev-album
+pl-rename classic
+q
+colorscheme everforest
+w
+dsfsdf
+ 
+colorscheme default
+colorscheme 
+set output_plugin=pulse
+set alsa_device=cmus_softvol
+set output_plugin=alsa
+bind -f common + vol +10%
+bind -f common = vol +2%
+pl-delete 
+pl-create playlist
+source:
+help color
+source .config/cmus/everforest.theme
+live-filte:
+source ~/.config/cmus/everforest.theme
+source ~/.config/cmus/
+colorscheme zenburn
+colorscheme spotify
+colorscheme solarized-light
+colorscheme solarized-dark
+colorscheme rc
+colorscheme night
+colorscheme jellybeans
+colorscheme gruvbox
+colorscheme gruvbox-alt
+colorscheme green
+colorscheme green-mono-88
+colorscheme gray-88
+colorscheme dracula
+colorscheme cyan
+colorscheme amazon
+colorscheme cyan7
+save
+bind -f common _ vol -10%
+bind -f common - vol -2%
+bind -f common + vol +2%
+rc
+ls
+update-cache 
+output
+filter f

@@ -4,8 +4,9 @@ set -e
 # Resolve directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
+SHARED_SETUPS_DIR="$ROOT_DIR/src/setups/shared"
 
-source "$ROOT_DIR/src/setups/shared/keep-sudo.sh"
+source "$SHARED_SETUPS_DIR/keep-sudo.sh"
 source "$SCRIPT_DIR/bootstrap/mirrors.sh"
 keep_sudo
 bootstrap_mirrors
@@ -36,6 +37,9 @@ done
 
 # --- Install Zsh at the end ---
 echo "Installing Zsh..."
-bash "$ROOT_DIR/src/setups/shared/install-zsh.sh"
+bash "$SHARED_SETUPS_DIR/install-zsh.sh"
+
+echo "Apply main configs..."
+bash "$SHARED_SETUPS_DIR/apply-configs.sh"
 
 echo "All done! Reboot recommended."
