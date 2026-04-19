@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install Oh My Zsh (unattended so script continues)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
