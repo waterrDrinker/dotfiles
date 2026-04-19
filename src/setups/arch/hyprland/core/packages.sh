@@ -10,7 +10,7 @@ hyprland_packages=(
   hyprland
 
   waybar
-  wofi
+  rofi
 
   grim
   slurp
