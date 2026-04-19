@@ -7,6 +7,7 @@ system=(
   xdg-utils
   gvfs
   darkman
+  wl-clipboard
 )
 
 # ── shell / cli ────────────────────────
