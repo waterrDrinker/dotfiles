@@ -13,11 +13,6 @@ if ! command -v yay &>/dev/null; then
   makepkg -si --noconfirm
 fi
 
-aur_packages=(
-  brave-bin
-  sing-box
-)
+echo "Installing informant..."
 
-echo "Installing AUR packages..."
-
-yay -S --noconfirm --needed "${aur_packages[@]}"
+yay -S --noconfirm --needed informant

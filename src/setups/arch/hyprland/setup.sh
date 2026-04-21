@@ -20,6 +20,7 @@ CORE_SCRIPTS=(
   "$SCRIPT_DIR/core/aur.sh"
   "$SCRIPT_DIR/core/services.sh"
   "$SCRIPT_DIR/core/user-services.sh"
+  "$SCRIPT_DIR/core/configs.sh"
 )
 
 for script in "${CORE_SCRIPTS[@]}"; do
@@ -39,7 +40,7 @@ done
 echo "Installing Zsh..."
 bash "$SHARED_SETUPS_DIR/install-zsh.sh"
 
-echo "Apply main configs..."
-bash "$SHARED_SETUPS_DIR/apply-configs.sh"
+echo "Install informant..."
+bash "$ROOT_DIR/src/setups/arch/shared/install-informant.sh"
 
 echo "All done! Reboot recommended."

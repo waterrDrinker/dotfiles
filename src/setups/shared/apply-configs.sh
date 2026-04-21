@@ -2,43 +2,30 @@
 set -e
 shopt -s nullglob
 
-ROOT_DIR="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
-SRC="$ROOT_DIR/src/configs/main"
-DEST="$HOME/.config"
+apply_configs() {
+  ROOT_DIR="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
+  MAIN="$ROOT_DIR/src/configs/main"
+  OPTIONAL="$ROOT_DIR/src/configs/optional"
+  DEST="$HOME/.config"
 
-if [ ! -e "$HOME/.config.bak" ]; then
-  cp -a ~/.config ~/.config.bak.$(date +%s)
-fi
+  mkdir -p "$DEST"
+  cp -a ~/.config "$HOME/.config.bak.$(date +%s)" 2>/dev/null || true
 
-echo "Applying configs from: $SRC"
+  for item in "$MAIN"/*/; do
+    name="$(basename "$item")"
+    target="$DEST/$name"
+    { [ -e "$target" ] || [ -L "$target" ]; } && rm -rf -- "$target"
+    ln -s "$item" "$target"
+  done
 
-mkdir -p "$DEST"
-
-for item in "$SRC"/*; do
-  name="$(basename "$item")"
-  target="$DEST/$name"
-
-  [ -z "$target" ] && {
-    echo "ERROR: empty target"
-    exit 1
-  }
-
-  case "$target" in
-  "$HOME/.config/"*) ;;
-  *)
-    echo "REFUSING unsafe path: $target"
-    exit 1
-    ;;
-  esac
-
-  # safety: ensure it's a directory or file we expect
-  if [ -e "$target" ] || [ -L "$target" ]; then
-    echo "→ replacing $target"
-    rm -rf -- "$target"
-  fi
-
-  echo "→ linking $name"
-  ln -s "$item" "$target"
-done
-
-echo "Done."
+  for name in "$@"; do
+    item="$OPTIONAL/$name"
+    [ -d "$item" ] || {
+      echo "SKIP: $item not found"
+      continue
+    }
+    target="$DEST/$name"
+    { [ -e "$target" ] || [ -L "$target" ]; } && rm -rf -- "$target"
+    ln -s "$item" "$target"
+  done
+}

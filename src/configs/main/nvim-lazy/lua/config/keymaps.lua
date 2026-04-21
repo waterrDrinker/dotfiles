@@ -9,6 +9,9 @@ map("v", "<leader>z", ":PxToRemLine<CR>", { noremap = true, silent = true })
 map("n", "<leader>vh", "H", { silent = true, desc = "Cursor on Viewport top" })
 map("n", "<leader>vm", "M", { silent = true, desc = "Cursor on Viewport middle" })
 map("n", "<leader>vl", "L", { silent = true, desc = "Cursor on Viewport bottom" })
+vim.keymap.set("n", "n", "nzzzv") -- keep cursor centered when searching
+vim.keymap.set("n", "<C-d>", "<C-d>zz") -- keep cursor centered when jumping
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 map({ "i", "s" }, "<Tab>", function()
   local ls = require("luasnip")
@@ -23,22 +26,22 @@ end)
 
 vim.keymap.set({ "n", "v" }, "c", '"_c')
 vim.keymap.set({ "n", "v" }, "x", '"_x')
-
--- Alt+d and Alt+c to cut to system clipboard
-vim.keymap.set({ "n", "v" }, "<A-d>", '"_d')
-vim.keymap.set({ "n", "v" }, "<A-c>", '"+c')
-vim.keymap.set("n", "<leader>ya", ":%y<cr>", { desc = "Yank all" })
+vim.keymap.set({ "n", "x" }, "y", '"+y')
+vim.keymap.set({ "n", "x" }, "<A-y>", "y")
+vim.keymap.set("n", "<leader>ya", ":%y+<CR>", { desc = "Yank all" })
 vim.keymap.set("n", "<leader>yf", function()
   vim.fn.setreg("+", vim.fn.expand("%:t"))
 end, { desc = "Yank filename" })
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz") -- keep cursor centered when jumping
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv") -- keep cursor centered when searching
+vim.keymap.set({ "n" }, "p", "p")
+vim.keymap.set({ "n" }, "P", "P")
 vim.keymap.set("x", "p", '"_dp')
 vim.keymap.set("x", "P", '"_dP')
+vim.keymap.set({ "n", "x" }, "<A-p>", '"+P')
+vim.keymap.set({ "n", "x" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<A-d>", '"+d')
 
-map("n", "<A-a>", "ggVG")
+vim.keymap.set("n", "<A-a>", "ggVG")
 
 vim.keymap.set("n", "<A-i>", function()
   vim.lsp.buf.code_action({
