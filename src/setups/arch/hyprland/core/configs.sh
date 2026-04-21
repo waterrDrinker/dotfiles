@@ -12,4 +12,4 @@ extra_configs=(
 
 echo "Apply main configs..."
 source "$SHARED_SETUPS_DIR/apply-configs.sh"
-apply-configs "${extra_configs[@]}"
+apply_configs "${extra_configs[@]}"
