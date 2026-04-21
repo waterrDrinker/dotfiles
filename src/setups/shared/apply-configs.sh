@@ -13,12 +13,20 @@ apply_configs() {
 
   for item in "$MAIN"/*/; do
     name="$(basename "$item")"
+    [ -d "$item" ] || {
+      echo "SKIP: $item"
+      continue
+    }
     target="$DEST/$name"
     { [ -e "$target" ] || [ -L "$target" ]; } && rm -rf -- "$target"
     ln -s "$item" "$target"
   done
 
   for name in "$@"; do
+    [ -n "$name" ] || {
+      echo "SKIP: empty name"
+      continue
+    }
     item="$OPTIONAL/$name"
     [ -d "$item" ] || {
       echo "SKIP: $item not found"
