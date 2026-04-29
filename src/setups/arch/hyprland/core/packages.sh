@@ -24,6 +24,8 @@ hyprland_packages=(
 
   gtk3
   gtk4
+  qt5-wayland
+  qt6-wayland
 )
 
 packages=(

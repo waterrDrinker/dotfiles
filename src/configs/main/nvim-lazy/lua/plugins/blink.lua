@@ -7,11 +7,15 @@ return {
     sources = {
       default = { "nvim-px-to-rem", "lsp", "path", "snippets", "buffer", "lazydev" },
       providers = {
+        snippets = {
+          score_offset = 100,
+        },
         ["nvim-px-to-rem"] = {
           module = "nvim-px-to-rem.integrations.blink",
           name = "nvim-px-to-rem",
         },
         lsp = {
+          score_offset = 50,
           override = {
             -- get_trigger_characters = function(self)
             --   local chars = self:get_trigger_characters()

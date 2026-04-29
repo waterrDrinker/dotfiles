@@ -6,6 +6,6 @@ vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 
-vim.opt.clipboard = ""
+vim.opt.clipboard = "unnamedplus"
 vim.g.autoformat = true
 vim.opt.shell = "/bin/zsh"

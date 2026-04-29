@@ -3,11 +3,17 @@ set -e
 
 # Resolve directories
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-ROOT_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
-SHARED_SETUPS_DIR="$ROOT_DIR/src/setups/shared"
+ROOT_DIR="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "ERROR: not inside a git repo"
+  exit 1
+}
+SHARED_DIR="$ROOT_DIR/src/setups/shared"
+SHARED_JOBS_DIR="$SHARED_DIR/jobs"
 
-source "$SHARED_SETUPS_DIR/keep-sudo.sh"
+source "$SHARED_DIR/utils/keep-sudo.sh"
+source "$SHARED_DIR/utils/warh.sh"
 source "$SCRIPT_DIR/bootstrap/mirrors.sh"
+
 keep_sudo
 bootstrap_mirrors
 
@@ -38,9 +44,19 @@ done
 
 # --- Install Zsh at the end ---
 echo "Installing Zsh..."
-bash "$SHARED_SETUPS_DIR/install-zsh.sh"
+bash "$SHARED_JOBS_DIR/install-zsh.sh"
+
+echo "Apply main configs..."
+bash "$SHARED_JOBS_DIR/apply-configs.sh"
 
 echo "Install informant..."
 bash "$ROOT_DIR/src/setups/arch/shared/install-informant.sh"
 
 echo "All done! Reboot recommended."
+
+if [ -s $WARNINGS_LOG_PATH ]; then
+  echo ""
+  echo "=== Warnings ==="
+  cat "$WARNINGS_LOG_PATH"
+  rm "$WARNINGS_LOG_PATH"
+fi
