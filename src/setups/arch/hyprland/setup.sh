@@ -14,6 +14,10 @@ source "$SHARED_DIR/utils/keep-sudo.sh"
 source "$SHARED_DIR/utils/warh.sh"
 source "$SCRIPT_DIR/bootstrap/mirrors.sh"
 
+LOG="/tmp/setup-$(date +%s).log"
+exec > >(tee "$LOG") 2>&1
+echo "Logging to $LOG"
+
 keep_sudo
 bootstrap_mirrors
 
