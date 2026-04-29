@@ -11,7 +11,7 @@ SHARED_DIR="$ROOT_DIR/src/setups/shared"
 SHARED_JOBS_DIR="$SHARED_DIR/jobs"
 
 source "$SHARED_DIR/utils/keep-sudo.sh"
-source "$SHARED_DIR/utils/warh.sh"
+source "$SHARED_DIR/utils/warn.sh"
 source "$SCRIPT_DIR/bootstrap/mirrors.sh"
 
 LOG="/tmp/setup-$(date +%s).log"
