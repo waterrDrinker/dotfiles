@@ -2,6 +2,8 @@
 
 Things to install manually after running setup.sh:
 
+## mpc update
+
 ## Waybar:
 - Pomodoro
 - Timer

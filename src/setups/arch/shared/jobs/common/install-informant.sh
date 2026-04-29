@@ -16,3 +16,5 @@ fi
 echo "Installing informant..."
 
 yay -S --noconfirm --needed informant
+
+sudo usermod -aG informant "$USER"

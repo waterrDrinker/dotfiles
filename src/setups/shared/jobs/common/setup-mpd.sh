@@ -16,11 +16,3 @@ else
   echo "mpd.service not found (systemd user service missing)"
   exit 0
 fi
-
-sleep 1
-
-if command -v mpc >/dev/null 2>&1; then
-  mpc update
-else
-  echo "mpc not installed"
-fi
