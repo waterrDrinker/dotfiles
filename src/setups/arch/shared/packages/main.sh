@@ -49,6 +49,12 @@ apps=(
   bitwarden
 )
 
+music=(
+  mpd
+  mpc
+  ncmpcpp
+)
+
 # ── file management ────────────────────
 files=(
   nautilus
@@ -78,6 +84,7 @@ main_packages=(
   "${audio[@]}"
   "${fonts[@]}"
   "${apps[@]}"
+  "${music[@]}"
   "${files[@]}"
   "${dev[@]}"
   "${misc[@]}"

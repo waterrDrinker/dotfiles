@@ -4,13 +4,7 @@ local t = ls.text_node
 
 local snips = {
   s("rootdir", {
-    t({
-      'CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"',
-      'ROOT_DIR="$(git -C "$CURRENT_DIR" rev-parse --show-toplevel 2>/dev/null)" || {',
-      '  echo "ERROR: not inside a git repo"',
-      "  exit 1",
-      "}",
-    }),
+    t('ROOT_DIR="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"'),
   }),
   s("cwd", {
     t('CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"'),
