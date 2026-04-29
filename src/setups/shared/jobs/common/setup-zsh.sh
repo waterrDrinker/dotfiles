@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ROOT_DIR="$(git -C "$(dirname "${BASH_SOURCE[0]}")" rev-parse --show-toplevel)"
+
 # Install Oh My Zsh (unattended so script continues)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
@@ -28,4 +30,4 @@ fi
 chsh -s "$(which zsh)"
 
 rm -f ~/.zshrc
-ln -sf "$HOME/dotfiles/src/shell/.zshrc" ~/.zshrc
+ln -sf "$ROOT_DIR/src/shell/.zshrc" ~/.zshrc

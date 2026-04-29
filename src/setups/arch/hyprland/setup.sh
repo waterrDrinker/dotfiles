@@ -47,14 +47,11 @@ for job in "$JOBS_DIR"/*.sh; do
 done
 
 # --- Install Zsh at the end ---
-echo "Installing Zsh..."
-bash "$SHARED_JOBS_DIR/install-zsh.sh"
+#echo "Installing Zsh..."
+#bash "$SHARED_JOBS_DIR/install-zsh.sh"
 
-echo "Apply main configs..."
-bash "$SHARED_JOBS_DIR/apply-configs.sh"
-
-echo "Install informant..."
-bash "$ROOT_DIR/src/setups/arch/shared/install-informant.sh"
+#echo "Install informant..."
+#bash "$ROOT_DIR/src/setups/arch/shared/install-informant.sh"
 
 echo "All done! Reboot recommended."
 
