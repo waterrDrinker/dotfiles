@@ -7,6 +7,7 @@ user_services=(
   wireplumber
   darkman
   xdg-desktop-portal
+  cleanup-old-files.timer
 )
 
 echo "Enabling user services..."
