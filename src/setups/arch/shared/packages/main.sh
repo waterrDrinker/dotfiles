@@ -8,6 +8,7 @@ system=(
   gvfs
   darkman
   wl-clipboard
+  fd
 )
 
 # ── shell / cli ────────────────────────
@@ -19,6 +20,7 @@ cli=(
   zsh
   fastfetch
   openbsd-netcat
+  yt-dlp
 )
 
 # ── terminal ───────────────────────────

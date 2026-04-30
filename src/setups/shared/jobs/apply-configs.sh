@@ -11,9 +11,9 @@ apply_configs() {
   mkdir -p "$DEST"
   cp -a ~/.config "$HOME/.config.bak.$(date +%s)" 2>/dev/null || true
 
-  for item in "$MAIN"/*/; do
+  for item in "$MAIN"/*; do
     name="$(basename "$item")"
-    [ -d "$item" ] || {
+    [ -e "$item" ] || {
       echo "SKIP: $item"
       continue
     }
@@ -28,7 +28,7 @@ apply_configs() {
       continue
     }
     item="$OPTIONAL/$name"
-    [ -d "$item" ] || {
+    [ -e "$item" ] || {
       echo "SKIP: $item not found"
       continue
     }
